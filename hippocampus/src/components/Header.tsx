@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import darkIcon from "../assets/dark.svg"
 import {useTheme} from '../contexts/context';
 import { HiMiniBars2 } from "react-icons/hi2";
+import { IoMdClose } from "react-icons/io";
 import clsx from 'clsx';
 
 
@@ -11,19 +12,19 @@ import clsx from 'clsx';
 const Header = () => {
     const {currentMode,setCurrentMode,activeBar,setActiveBar} = useTheme()
 return (
-    <header className="h-[65px] bg-p4 dark:bg-s2 flex justify-between items-center py-[12px] px-[40px]
+    <header className="h-[65px] bg-p4 dark:bg-[#1e1e1e]  flex justify-between items-center py-[12px] px-[40px]
         border-b-1 border-p1 dark:border-p4 fixed min-md:top-0 left-0 z-50 w-full transition-all duration-500 max-sm:px-[10px]">
         <div className='min-sm:hidden cursor-pointer z-10' onClick={()=>{setActiveBar(prev => !prev)
             console.log("changed")
         }}>
-            <HiMiniBars2 /> 
+            {activeBar ? <IoMdClose  className='dark:text-p1'/>  : <HiMiniBars2 className='dark:text-p1' />} 
         </div>
         <div className='min-lg:w-[273px] max-md:hidden'>
             <NavLink to="/" end className="text-[18px] font-bold text-p2 dark:text-p4">Hippocampus</NavLink>
         </div>
         <div className='flex-1 items-center flex min-lg:justify-between max-md:justify-center max-lg:justify-end max-w-[1280px] min-md:ml-[15px]'>
             <nav className={clsx(`flex min-lg:gap-[36px] min-md:gap-[8px] min-lg:flex-1 min-lg:mr-[32px] min-md:mr-[8px] min-md:justify-end max-sm:w-1/2 max-sm:pt-[80px]
-                max-sm:absolute max-sm:left-0 max-sm:flex-col max-sm:h-screen max-sm:gap-[32px] max-sm:justify-start max-sm:top-0  duration-500 transition-all max-sm:bg-[#FAFAFA] dark:bg-s2`,activeBar ? "translate-x-[0]" : "max-sm:translate-x-[-100%]" )}>
+                max-sm:absolute max-sm:left-0 max-sm:flex-col max-sm:h-screen max-sm:gap-[32px] max-sm:justify-start max-sm:top-0  duration-500 transition-all max-sm:bg-[#FAFAFA] dark:bg-[#1e1e1e]`,activeBar ? "translate-x-[0]" : "max-sm:translate-x-[-100%]" )}>
                 <NavLink to="/" end className={({isActive})=> {
                     const basicClass = "font-bold text-[14px]  px-4 py-2 rounded-md transition-colors duration-200 min-md:hidden max-sm:w-11-12"
                     if(isActive) {return `${basicClass} bg-[#f0f2f4] font-semibold`}
