@@ -1,5 +1,8 @@
 import { coursesData } from "../assets/data"
+import {useState} from "react"
+import clsx from "clsx"
 const Courses = () => {
+
   return (
     <section className="container pt-28">
       <div className="text-center mb-12">

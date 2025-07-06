@@ -37,6 +37,13 @@ interface pages {
     name : string
     path : string
 }
+interface faqData {
+    heading: string;
+    questions: {
+        question: string;
+        answer: string;
+    }[];
+}
 
 export const whyHippocampus:whyHippocampus[] = [
     {
@@ -210,3 +217,71 @@ export const pages:pages[] = [
     }
 
 ]
+
+
+export const faqData:faqData[] = [
+    {
+        heading: "General & Enrollment",
+        questions: [
+            {
+                question : "What is Hippocampus?",
+                answer : "Hippocampus is an online learning platform dedicated to providing high-quality courses designed to enhance your knowledge and skills. Our name is inspired by the part of the brain that is vital for learning and memory, reflecting our commitment to effective and lasting education."
+            },
+            {
+                question : "Who are the courses for?",
+                answer : "Our courses are designed for a wide range of learners, from students seeking to supplement their academic studies to professionals looking to advance their careers. Each course specifies its target audience and any prerequisite knowledge required."
+            },
+            {
+                question : "How do I enroll in a course?",
+                answer : "To enroll, simply navigate to the course page you're interested in and click the 'Enroll Now' or 'Sign Up' button. You will be guided through a simple registration and payment process to get started."
+            },
+            {
+                question : "Do I get a certificate after completion?",
+                answer : "Yes, upon successful completion of any course, you will receive a verifiable digital certificate that you can share on your professional networks, like LinkedIn, or include in your resume."
+            }
+        ]
+    },
+    {
+        // New heading and questions
+        heading: "Course Experience & Features",
+        questions: [
+            {
+                question: "What is the format of the courses?",
+                answer: "Our courses consist of a mix of high-quality video lectures, practical assignments, readings, and quizzes. This blended approach ensures you not only learn the concepts but also know how to apply them."
+            },
+            {
+                question: "Are the courses self-paced?",
+                answer: "Most of our courses are self-paced, giving you the flexibility to learn on your own schedule. While you have lifetime access, we often provide a recommended schedule to help you stay on track."
+            },
+            {
+                question: "Can I interact with instructors and other students?",
+                answer: "Yes. Each course has a dedicated discussion forum where you can ask questions, share your work, and connect with both your peers and the course instructor. We believe in the power of community learning."
+            },
+            {
+                question: "Can I access courses on my mobile device?",
+                answer: "Absolutely. Our platform is fully responsive, meaning you can access your courses and learn on any device, whether it's a desktop, tablet, or smartphone."
+            }
+        ]
+    },
+    {
+        heading: "Payment & Support",
+        questions: [
+            {
+                question : "What payment methods do you accept?",
+                answer : "We accept all major credit cards (Visa, MasterCard, American Express) as well as secure payments through PayPal. All transactions are encrypted for your security."
+            },
+            {
+                question: "Is there a refund policy?",
+                answer: "Yes, we offer a 14-day money-back guarantee. If you are not satisfied with a course for any reason, you can request a full refund within 14 days of your purchase."
+            },
+            {
+                question: "Can I access the course material after I finish?",
+                answer: "Absolutely. Once you enroll in a course, you have lifetime access to all its materials, including videos, articles, and any future updates. You can revisit the content anytime to refresh your knowledge."
+            },
+             {
+                question: "I'm having a technical issue. Who can I contact?",
+                answer: "If you encounter any technical difficulties, please visit our 'Support' page and fill out the contact form. Our dedicated technical support team will get back to you within 24 hours to assist you."
+            }
+        ]
+    }
+];
