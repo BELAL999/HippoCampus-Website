@@ -13,7 +13,7 @@ const Login = () => {
     const [loading , setLoading] = useState<boolean>(false)
     const {signInUser,signUpWithGoogle} = useTheme()
     console.log(error,loading)
-    const handleLoginIn = async (e: any) => {
+    const handleLoginIn = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setLoading(true);
         
@@ -28,8 +28,8 @@ const Login = () => {
                 // Auto-clear error after 3 seconds
                 setTimeout(() => setError(""), 3000);
             }
-        } catch (err) {
-            setError("An unexpected error occurred.");
+        } catch (err:unknown) {
+            setError(err instanceof Error ? err.message : "An unexpected error occurred.");
             setTimeout(() => setError(""), 3000);
         } finally {
             setLoading(false);

@@ -11,12 +11,12 @@ const SignUp = () => {
   const [password,setPassword] = useState<string>("")
   const [name,setName] = useState<string>("")
   const [loading,setLoading] = useState<boolean>(false)
-  const [error , setError] = useState<any>("")
+  const [error, setError] = useState<string | null>(null);
 
   console.log(error,loading,name)
 
 
-  const handleSummit = async (e:any) => {
+  const handleSummit = async (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     try {
@@ -27,7 +27,7 @@ const SignUp = () => {
         setError(result.error.message); // Show error message on failure
       }
     } catch (err) {
-      setError("An unexpected error occurred."); // Catch unexpected errors
+      setError(err instanceof Error ? err.message : "An unexpected error occurred."); // Catch unexpected errors
     } finally {
       setLoading(false); // End loading state
     }

@@ -4,19 +4,19 @@ import { Link } from "react-router-dom";
 
 // Define the session type based on common auth libraries (like Supabase)
 interface UserMetadata {
-  full_name?: string;
-  [key: string]: any;
+    full_name?: string;
+    [key: string]: string | number | boolean | null | undefined;
 }
 
 interface User {
-  id: string;
-  user_metadata?: UserMetadata;
-  [key: string]: any;
+    id: string;
+    user_metadata?: UserMetadata;
+    [key: string]: string | UserMetadata | boolean | number | null | undefined;
 }
 
 interface Session {
-  user?: User;
-  [key: string]: any;
+    user?: User;
+    [key: string]: unknown;
 }
 
 interface UserProfileProps {

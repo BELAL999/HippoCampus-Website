@@ -1,13 +1,13 @@
 import { createContext, useState, useEffect, useContext } from "react";
 import type { ReactNode } from "react";
 import { supabase } from "../supabaseClient.tsx";
-import type { AuthError, User,  AuthChangeEvent } from '@supabase/supabase-js';
+import type { AuthError, User,  AuthChangeEvent,Session } from '@supabase/supabase-js';
 
 // 1. Define the shape of your context's value (Crucial for TypeScript)
 
 type SignUpResult = {
     success: true;
-    data: { user: User | null; session : any };
+    data: { user: User | null; session : Session| null };
 } | {
     success: false;
     error: AuthError;
@@ -15,7 +15,7 @@ type SignUpResult = {
 
 type SignInResult = {
     success: true;
-    data: { user: User | null; session: any; };
+    data: { user: User | null; session: Session| null; };
 } | {
     success: false;
     error: string;
@@ -30,8 +30,9 @@ export interface ThemeContextType {
     signUpNewUsers: (email: string, password: string) => Promise<SignUpResult>;
     signInUser: (email: string, password: string) => Promise<SignInResult>;
     signOut: () => Promise<void>;
-    session: any;
-    signUpWithGoogle : any
+    session: Session | null;
+    signUpWithGoogle : () => Promise<void>
+
 }
 
 // 2. Create the Context with its explicit type and initial value `undefined`
@@ -44,7 +45,7 @@ interface ThemeProviderProps {
 export default function Context({ children }: ThemeProviderProps) {
     const [currentMode, setCurrentMode] = useState<"light" | "dark">("light");
     const [activeBar, setActiveBar] = useState<boolean>(false);
-    const [session, setSession] = useState<any>(null);
+    const [session, setSession] = useState<Session | null>(null);
     console.log(session)
 
     // Sign up function
@@ -79,9 +80,9 @@ export default function Context({ children }: ThemeProviderProps) {
             // If no error, return success
             console.log("Sign-in success:", data);
             return { success: true, data };
-        } catch (error: any) {
+        } catch (error) {
             // Handle unexpected issues
-            console.error("Unexpected error during sign-in:", error.message);
+            console.error(error instanceof Error ? error.message : "An unexpected error occurred.");
             return {
                 success: false,
                 error: "An unexpected error occurred. Please try again.",
@@ -111,11 +112,11 @@ export default function Context({ children }: ThemeProviderProps) {
 
     // Effect for session management
     useEffect(() => {
-        supabase.auth.getSession().then(({ data: { session } }: { data: { session: any } }) => {
+        supabase.auth.getSession().then(({ data: { session } }: { data: { session: Session | null } }) => {
             setSession(session);
         });
 
-        const { data: { subscription } } = supabase.auth.onAuthStateChange((_event: AuthChangeEvent, session: any) => {
+        const { data: { subscription } } = supabase.auth.onAuthStateChange((_event: AuthChangeEvent, session: Session | null) => {
             setSession(session);
         });
 
@@ -129,7 +130,7 @@ export default function Context({ children }: ThemeProviderProps) {
     }, [currentMode]);
 
 
-    const signUpWithGoogle = async () => {
+    const signUpWithGoogle = async (): Promise<void> => {
     await supabase.auth.signInWithOAuth({
     provider: "google",
     });
@@ -156,7 +157,7 @@ export default function Context({ children }: ThemeProviderProps) {
 }
 
 export { ThemeContext };
-
+// eslint-disable-next-line react-refresh/only-export-components
 export const useTheme = () => {
     const context = useContext(ThemeContext);
     if (context === undefined) {

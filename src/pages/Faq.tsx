@@ -1,6 +1,7 @@
 import { faqData } from "../assets/data"
-import { IoIosArrowDown } from "react-icons/io";
 import { useState } from "react";
+import { motion, AnimatePresence } from 'framer-motion';
+
 
 
 
@@ -17,20 +18,43 @@ const Faq = () => {
       <div>
         {faqData.map((data) => (
           <div key={data.heading} className="py-[20px]">
-              <h3 className="text-[22px] font-bold dark:text-p4 mb-[16px] ">{data.heading}</h3>
+            <h3 className="text-[22px] font-bold dark:text-p4 mb-[16px]">{data.heading}</h3>
             <div className="flex flex-col gap-4">
               {data.questions.map((question) => {
+                const isOpen = id === question.question;
                 return (
-                  <div className="bg-p4 dark:bg-[#21262B] rounded-2xl overflow-hidden transform border-[#D6DBE0] border-2 dark:border-dark-Cs flex flex-col py-[7px] px-[15px]" key={question.question}>
-                    <div className="flex justify-between items-center">
-                      <p className="py-[8px] text-[16px] font-semibold dark:text-p4">{question.question}</p>
-                      <IoIosArrowDown className="dark:text-p4" onClick={()=>{
-                        setId(id === question.question ? null : question.question)
-                      }}/>
-                    </div>
-                          <p className="dark:text-p1">{question.answer}</p>
+                  <div key={question.question} className="bg-white rounded-lg shadow-md overflow-hidden dark:bg-[#21262B]">
+                    <button 
+                      onClick={() => setId(isOpen ? null : question.question)}
+                      className="w-full px-6 py-4 text-left transition-colors font-medium flex justify-between items-center"
+                    >
+                      <span className="dark:text-p4">{question.question}</span>
+                      <span className="text-gray-500">{isOpen ? '▲' : '▼'}</span>
+                    </button>
+                    
+                    <AnimatePresence>
+                      {isOpen && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ 
+                            type: "spring",
+                            stiffness: 300,
+                            damping: 24
+                          }}
+                          className="overflow-hidden"
+                        >
+                          <div className="p-6 bg-gray-50 dark:bg-[#21262B]">
+                            <p className="text-gray-700 dark:text-[#94ABC7]">
+                              {question.answer}
+                            </p>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
-                )
+                );
               })}
             </div>
           </div>
