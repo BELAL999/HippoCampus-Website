@@ -104,14 +104,14 @@ const SignUp = () => {
 
           <button
             type="submit"
-            className="w-full justify-center rounded-md bg-p1 px-3 py-3 text-sm font-semibold leading-6 text-p2 shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 cursor-pointer"
+            className="w-full justify-center rounded-md bg-p1 px-3 py-3 text-sm font-semibold leading-6 text-p2 shadow-sm focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-indigo-600 cursor-pointer"
           >
             Register Now
           </button>
         </form>
         <div className="flex flex-col justify-between gap-4 pt-4">
           <p className="mx-auto font-bold dark:text-p1"> Or </p>
-          <button className="w-full  rounded-md bg-p1 px-3 py-3 text-sm font-semibold leading-6 text-p2 shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 cursor-pointer mt-4 flex justify-center items-center gap-8
+          <button className="w-full  rounded-md bg-p1 px-3 py-3 text-sm font-semibold leading-6 text-p2 shadow-sm focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-indigo-600 cursor-pointer mt-4 flex justify-center items-center gap-8
           " onClick={signUpWithGoogle}>
             <FaGoogle  className="text-[#EA4335]"/> 
             sign up with Google 
