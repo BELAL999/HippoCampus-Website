@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink,Link } from 'react-router-dom';
 import {useTheme} from '../contexts/context';
 import { HiMiniBars2 } from "react-icons/hi2";
 import { IoMdClose } from "react-icons/io";
@@ -6,13 +6,16 @@ import { MdOutlineDarkMode } from "react-icons/md";
 import { CiLight } from "react-icons/ci";
 import clsx from 'clsx';
 import { pages } from "../assets/data"
-
+import { DiVim } from 'react-icons/di';
+import {useState} from "react"
+import UserProfile from './UserProfile';
 
 
 
 
 const Header = () => {
-    const {currentMode,setCurrentMode,activeBar,setActiveBar} = useTheme()
+    const {currentMode,setCurrentMode,activeBar,setActiveBar,session} = useTheme()
+    const [isHover,setIsHover] = useState<boolean>(false)
 return (
     <header className="h-[65px] bg-p4 dark:bg-[#1e1e1e]  flex justify-between items-center py-[12px] px-[40px]
         border-b-1 border-p1 dark:border-p4 fixed min-md:top-0 left-0 z-50 w-full transition-all duration-500 max-sm:px-[10px]">
@@ -53,16 +56,12 @@ return (
                     {currentMode === "dark" ? <MdOutlineDarkMode /> : <CiLight />}
                 </button>
                 {/* here we will do a furthur development */}
-                <button className='px-[16px] rounded-[20px] bg-p1 h-[40px] text-p2  font-bold text-[14px] cursor-pointer'
-                    onClick={()=>{}}
-                >
-                    Login
+            {!session ? (
+                <button className='px-[16px] rounded-[20px] bg-p1 h-[40px] text-p2 font-bold text-[14px] cursor-pointer'
+                        onClick={()=>{}}>
+                    <Link to="/login">sign in</Link>
                 </button>
-                <button className='px-[16px] rounded-[20px] bg-s1 h-[40px] text-p2  font-bold text-[14px] cursor-pointer'
-                    onClick={()=>{}}
-                >
-                    Sign up
-                </button>
+                ) : <UserProfile session={session} setIsHover={setIsHover}  isHover = {isHover} />}
             </div>
         </div>
 

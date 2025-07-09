@@ -204,10 +204,6 @@ export const pages:pages[] = [
         path : "/courses"
     },
     {
-        name : "Instructors",
-        path : "/instructors"
-    },
-    {
         name : "FAQ",
         path : "/faq"
     },
