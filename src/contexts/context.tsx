@@ -1,7 +1,7 @@
 import { createContext, useState, useEffect, useContext } from "react";
 import type { ReactNode } from "react";
 import { supabase } from "../supabaseClient.tsx";
-import type { AuthError, User, Session, AuthChangeEvent } from '@supabase/supabase-js';
+import type { AuthError, User,  AuthChangeEvent } from '@supabase/supabase-js';
 
 // 1. Define the shape of your context's value (Crucial for TypeScript)
 
@@ -45,6 +45,7 @@ export default function Context({ children }: ThemeProviderProps) {
     const [currentMode, setCurrentMode] = useState<"light" | "dark">("light");
     const [activeBar, setActiveBar] = useState<boolean>(false);
     const [session, setSession] = useState<any>(null);
+    console.log(session)
 
     // Sign up function
     const signUpNewUsers = async (email: string, password: string): Promise<SignUpResult> => {
