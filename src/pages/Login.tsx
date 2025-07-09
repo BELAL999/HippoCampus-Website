@@ -12,6 +12,7 @@ const Login = () => {
     const [error,setError] = useState<string| null>(null)
     const [loading , setLoading] = useState<boolean>(false)
     const {signInUser,signUpWithGoogle} = useTheme()
+    console.log(error,loading)
     const handleLoginIn = async (e: any) => {
         e.preventDefault();
         setLoading(true);

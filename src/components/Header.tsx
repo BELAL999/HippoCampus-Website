@@ -6,7 +6,6 @@ import { MdOutlineDarkMode } from "react-icons/md";
 import { CiLight } from "react-icons/ci";
 import clsx from 'clsx';
 import { pages } from "../assets/data"
-import { DiVim } from 'react-icons/di';
 import {useState} from "react"
 import UserProfile from './UserProfile';
 

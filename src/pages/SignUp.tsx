@@ -13,6 +13,8 @@ const SignUp = () => {
   const [loading,setLoading] = useState<boolean>(false)
   const [error , setError] = useState<any>("")
 
+  console.log(error,loading,name)
+
 
   const handleSummit = async (e:any) => {
     e.preventDefault();
