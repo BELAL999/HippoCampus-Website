@@ -1,8 +1,6 @@
 import { faqData } from "../assets/data"
 import { IoIosArrowDown } from "react-icons/io";
 import { useState } from "react";
-import {SlideDown} from 'react-slidedown';
-import 'react-slidedown/lib/slidedown.css'
 
 
 
@@ -30,9 +28,7 @@ const Faq = () => {
                         setId(id === question.question ? null : question.question)
                       }}/>
                     </div>
-                      <SlideDown className={'my-dropdown-slidedown'}>
-                        {question.question === id ? <p className="dark:text-p1">{question.answer}</p> : null}  
-                      </SlideDown>
+                          <p className="dark:text-p1">{question.answer}</p>
                   </div>
                 )
               })}
