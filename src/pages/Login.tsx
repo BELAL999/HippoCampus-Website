@@ -2,8 +2,10 @@ import { Link } from "react-router-dom";
 import {useState} from "react"
 import { useTheme } from "../contexts/context";
 import { useNavigate } from "react-router-dom";
-import { FaGoogle } from "react-icons/fa";
-
+import googelIcon  from "../assets/google-icon.svg";
+import { FaCircleExclamation } from "react-icons/fa6";
+import clsx from "clsx";
+import loginPhoto from "../assets/login bg.jpg"
 
 const Login = () => {
     const navigate = useNavigate();
@@ -12,7 +14,6 @@ const Login = () => {
     const [error,setError] = useState<string| null>(null)
     const [loading , setLoading] = useState<boolean>(false)
     const {signInUser,signUpWithGoogle} = useTheme()
-    console.log(error,loading)
     const handleLoginIn = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setLoading(true);
@@ -26,7 +27,7 @@ const Login = () => {
             } else {
                 setError(result.error);
                 // Auto-clear error after 3 seconds
-                setTimeout(() => setError(""), 3000);
+                setTimeout(() => setError(""), 5000);
             }
         } catch (err:unknown) {
             setError(err instanceof Error ? err.message : "An unexpected error occurred.");
@@ -38,14 +39,23 @@ const Login = () => {
     return (
         <section className="container grid grid-cols-1 md:grid-cols-2 gap-8 items-center min-h-screen pt-28">
             <div className="flex flex-col justify-center">
-            <div className="max-w-md mx-auto w-full">
+            <div className="max-w-md mx-auto w-full relative">
             <h1 className="text-4xl font-bold text-p2 dark:text-p4 mb-2">
                 Welcome back!
             </h1>
             <p className="text-p3 dark:text-[#94ABC7] mb-8">
                 Enter your credentials to access your account.
             </p>
-            <form className="flex flex-col gap-4" onSubmit={handleLoginIn}>
+            {/* 1px solid var(#7c7c7c, #818181) */}
+            <button className="w-full bg-transparent px-3 py-3 text-sm font-semibold leading-6 text-p2 shadow-sm focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-indigo-600 cursor-pointer mt-4 flex justify-center items-center gap-8 dark:text-p1 border-1 border-[#818181] rounded-full 
+                " onClick={signUpWithGoogle}>
+                    <img src={googelIcon} alt="" className="w-6 h-6" />
+                        Continue with Google
+            </button>
+            <div className="absolute w-full h-[1px] dark:bg-[] bg-p1 my-4">
+
+            </div>
+            <form className="flex flex-col gap-4 pt-8 pb-2" onSubmit={handleLoginIn}>
                 <div>
                 <label
                     htmlFor="email-input"
@@ -57,7 +67,8 @@ const Login = () => {
                     type="email"
                     name="email"
                     id="email-input"
-                    className="w-full px-4 py-2 border border-[#DBE0E5] dark:border-dark-Cs rounded-lg bg-p4 dark:bg-[#21262B] focus:outline-none focus:ring-2 focus:ring-p1 dark:focus:ring-s2 dark:text-p4"
+                    required
+                    className={clsx("w-full px-4 py-2 border border-[#DBE0E5] dark:border-dark-Cs rounded-lg bg-p4 dark:bg-[#21262B] focus:outline-none focus:ring-2 focus:ring-p1 dark:focus:ring-s2 dark:text-p4",error && "border-red-500")}
                     placeholder="email@example.com"
                     onChange={(e)=> {
                         setEmail(e.currentTarget.value)
@@ -75,7 +86,7 @@ const Login = () => {
                     type="password"
                     name="password"
                     id="pass-input"
-                    className="w-full px-4 py-2 border border-[#DBE0E5] dark:border-dark-Cs rounded-lg bg-p4 dark:bg-[#21262B] focus:outline-none focus:ring-2 focus:ring-p1 dark:focus:ring-s2 dark:text-p4"
+                    className={clsx("w-full px-4 py-2 border border-[#DBE0E5] dark:border-dark-Cs rounded-lg bg-p4 dark:bg-[#21262B] focus:outline-none focus:ring-2 focus:ring-p1 dark:focus:ring-s2 dark:text-p4",error && "border-red-500")}
                     placeholder="Enter your password"
                     onChange={(e)=> {
                         setPassword(e.currentTarget.value)
@@ -84,11 +95,15 @@ const Login = () => {
                 </div>
                 <button
                 type="submit"
-                className="bg-p1 text-p2 rounded-full py-3 px-4 cursor-pointer font-semibold hover:opacity-90 transition-opacity w-full mt-4"
-                >
-                Sign In
+                disabled={loading}
+                className="bg-p1 text-p2 rounded-full py-3 px-4 cursor-pointer font-semibold hover:opacity-90 transition-opacity w-full mt-4">
+                    {loading ? "Submitting....." : "Sign In"}
                 </button>
             </form>
+            {error && <div className="flex gap-4 items-center pl-4">
+                    <FaCircleExclamation  className="text-red-500"/>
+                    <p className="text-red-500">{error}</p>
+                </div>}
             <div className="text-center mt-6 text-sm">
                 <p className="text-p3 dark:text-[#94ABC7]">
                 Not a member?{" "}
@@ -97,20 +112,12 @@ const Login = () => {
                 </Link>
                 </p>
             </div>
-            <div className="flex flex-col justify-between gap-4 pt-4">
-                      <p className="mx-auto font-bold dark:text-p1"> Or </p>
-                      <button className="w-full  rounded-md bg-p1 px-3 py-3 text-sm font-semibold leading-6 text-p2 shadow-sm focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-indigo-600 cursor-pointer mt-4 flex justify-center items-center gap-8
-                      " onClick={signUpWithGoogle}>
-                        <FaGoogle  className="text-[#EA4335]"/> 
-                        sign in with Google 
-                      </button>
-                    </div>
             </div>
             </div>
             <div className="hidden md:flex items-center justify-center">
             {/* Your illustration or image component goes here */}
-                <div className="w-full h-96 bg-gray-200 dark:bg-gray-700 rounded-lg flex items-center justify-center">
-                    <p className="text-gray-500">Illustration Area</p>
+                <div className="w-full  rounded-lg flex items-center justify-center">
+                    <img src={loginPhoto} alt="loginPhoto"  className="rounded-2xl"/>
                 </div>
             </div>
         </section>
