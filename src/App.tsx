@@ -8,11 +8,13 @@ import Login from "./pages/Login"
 import SignUp from "./pages/SignUp"
 import Profile from "./pages/Profile"
 import CourseDetails from "./pages/CourseDetails"
+import ScrollToTop from "./components/ScrollToTop"
 
 function App() {
 
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Layout/>}>
           <Route index element={<Home/>} />
