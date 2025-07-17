@@ -1,27 +1,12 @@
 import React, { useState } from "react";
 import { useTheme } from "../contexts/context";
 import { Link } from "react-router-dom";
+import type { Session } from "@supabase/supabase-js"; // Import the official Session type
 
-// Define the session type based on common auth libraries (like Supabase)
-interface UserMetadata {
-    full_name?: string;
-    [key: string]: string | number | boolean | null | undefined;
-}
-
-interface User {
-    id: string;
-    user_metadata?: UserMetadata;
-    [key: string]: string | UserMetadata | boolean | number | null | undefined;
-}
-
-interface Session {
-    user?: User;
-    [key: string]: unknown;
-}
-
+// Remove your custom interfaces and use this simplified interface
 interface UserProfileProps {
   setIsHover: (isHover: boolean) => void;
-  session: Session | null;
+  session: Session | null; // Use the official Session type
   isHover: boolean;
 }
 
@@ -40,7 +25,7 @@ const UserProfile: React.FC<UserProfileProps> = ({ setIsHover, session, isHover 
   const handleMouseLeave = (): void => {
     const timeout = setTimeout(() => {
       setIsHover(false);
-    }, 100); // 100ms delay
+    }, 100);
     setLeaveTimeout(timeout);
   };
 
