@@ -10,7 +10,7 @@ const CourseDetails = () => {
   const course = coursesData.find(c => c.id === courseId);
 
   const number = "201011822243";
-  const {openWhatsApp} = useWhatsApp(number); // ✅ Hook called at the top level
+  const {openWhatsApp} = useWhatsApp(number);
 
   const goToWhatsApp = (courseTitle: string) => {
     const message = `Hello, I want to enroll in the ${courseTitle} course. Could you please provide more details?`;
