@@ -1,12 +1,21 @@
 import { useParams } from 'react-router-dom';
 import { coursesData, courses } from '../assets/data';
 import { FaBook, FaClock, FaUserTie, FaCertificate, FaLanguage } from 'react-icons/fa';
+import useWhatsApp from '../Hooks/useWhatsApp.ts';
 
 const CourseDetails = () => {
   const { id } = useParams<{ id: string }>();
   const courseId = id ? parseInt(id, 10) : -1;
   
   const course = coursesData.find(c => c.id === courseId);
+
+  const number = "201011822243";
+  const {openWhatsApp} = useWhatsApp(number); // ✅ Hook called at the top level
+
+  const goToWhatsApp = (courseTitle: string) => {
+    const message = `Hello, I want to enroll in the ${courseTitle} course. Could you please provide more details?`;
+    openWhatsApp(message);
+  }
   
   // This is a bit fragile due to slight title mismatches. 
   // A shared ID between course objects would be more robust.
@@ -46,7 +55,8 @@ const CourseDetails = () => {
             <div className="bg-p4 dark:bg-[#21262B] p-6 rounded-2xl shadow-lg border-2 border-[#DBE0E5] dark:border-dark-Cs">
               <img src={course.image} alt={course.title} className="w-full h-48 object-cover rounded-lg mb-4" />
               <p className="text-3xl font-bold text-p2 dark:text-p4 mb-4">${course.price}</p>
-              <button className="w-full bg-p1 text-p2 rounded-full py-3 px-4 cursor-pointer font-semibold hover:opacity-80 transition-opacity">
+              <button className="w-full bg-p1 text-p2 rounded-full py-3 px-4 cursor-pointer font-semibold hover:opacity-80 transition-opacity" 
+                onClick={()=> goToWhatsApp(course.title)}>
                 Enroll Now
               </button>
               {detailedCourse && (
