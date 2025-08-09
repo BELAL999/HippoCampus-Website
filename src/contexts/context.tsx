@@ -27,7 +27,7 @@ export interface ThemeContextType {
     toggleTheme: () => void;
     activeBar: boolean;
     setActiveBar: React.Dispatch<React.SetStateAction<boolean>>;
-    signUpNewUsers: (email: string, password: string) => Promise<SignUpResult>;
+    signUpNewUsers: (email: string, password: string,name:string) => Promise<SignUpResult>;
     signInUser: (email: string, password: string) => Promise<SignInResult>;
     signOut: () => Promise<void>;
     session: Session | null;
