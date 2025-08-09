@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import { Link , useLoaderData } from "react-router-dom";
+import type { LoaderFunctionArgs } from "react-router-dom";
 import {useState} from "react"
 import { useTheme } from "../contexts/context";
 import { useNavigate } from "react-router-dom";
@@ -6,8 +7,14 @@ import googelIcon  from "../assets/google-icon.svg";
 import { FaCircleExclamation } from "react-icons/fa6";
 import clsx from "clsx";
 import loginPhoto from "../assets/login bg.jpg"
+export function loader({request}:LoaderFunctionArgs){
+    
+    const message = new URL(request.url).searchParams.get("message")
+    return message
 
+}
 const Login = () => {
+    const message = useLoaderData()
     const navigate = useNavigate();
     const [email,setEmail] = useState<string>("")
     const [password,setPassword] = useState<string> ("")
@@ -40,6 +47,8 @@ const Login = () => {
         <section className="container grid grid-cols-1 md:grid-cols-2 gap-8 items-center min-h-screen pt-28">
             <div className="flex flex-col justify-center">
             <div className="max-w-md mx-auto w-full relative">
+                            {message && <h2 className="text-red-700 font-bold py-4 text-2xl">{message}</h2>}
+
             <h1 className="text-4xl font-bold text-p2 dark:text-p4 mb-2">
                 Welcome back!
             </h1>

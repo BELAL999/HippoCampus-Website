@@ -26,7 +26,7 @@ const SignUp = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const result = await signUpNewUsers(email, password); // Call context function
+      const result = await signUpNewUsers(email, password,name); // Call context function
       if (result.success) {
         navigate("/courses"); // Navigate to dashboard on success
       } else {

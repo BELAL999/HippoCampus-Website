@@ -46,15 +46,18 @@ export default function Context({ children }: ThemeProviderProps) {
     const [currentMode, setCurrentMode] = useState<"light" | "dark">("light");
     const [activeBar, setActiveBar] = useState<boolean>(false);
     const [session, setSession] = useState<Session | null>(null);
-    console.log(session)
 
     // Sign up function
-    const signUpNewUsers = async (email: string, password: string): Promise<SignUpResult> => {
+    const signUpNewUsers = async (email: string, password: string,name: string): Promise<SignUpResult> => {
         const { data, error } = await supabase.auth.signUp({
             email: email,
             password: password,
         });
-        
+        if (data.user) {
+        await supabase
+            .from('profiles')
+            .insert({ id: data.user.id, full_name: name });
+        }
         if (error) {
             console.error("Error signing up: ", error);
             return { success: false, error };
@@ -128,7 +131,6 @@ export default function Context({ children }: ThemeProviderProps) {
     useEffect(() => {
         toggleTheme();
     }, [currentMode]);
-
 
     const signUpWithGoogle = async (): Promise<void> => {
     await supabase.auth.signInWithOAuth({

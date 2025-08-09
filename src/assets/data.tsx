@@ -32,6 +32,7 @@ interface courses {
     duration: string;
     instructor: string;
     price: number;
+    featured: boolean;
 }
 interface pages {
     name : string
@@ -100,7 +101,8 @@ export const coursesData : courses[] = [
         description: "Delve into the intricate anatomy, physiology, and common pathologies of the musculoskeletal system. This block covers bones, muscles, joints, and connective tissues, preparing you for clinical assessment and management of related conditions.",
         duration: "Varies", // You might want to define durations for each block
         instructor: "Expert Orthopedists", // Placeholder, you might link to actual instructors
-        price: 1700
+        price: 1700,
+        featured: true
     },
     {
         id:1,
@@ -110,7 +112,8 @@ export const coursesData : courses[] = [
         description: "Explore the comprehensive functions of the digestive system, from esophagus to rectum, including liver, pancreas, and gallbladder. Understand common GI disorders, diagnostic techniques, and therapeutic approaches.",
         duration: "Varies",
         instructor: "Leading Gastroenterologists",
-        price: 2000
+        price: 2000,
+        featured: true
     },
     {
         id:2,
@@ -120,7 +123,8 @@ export const coursesData : courses[] = [
         description: "Master the complexities of the cardiovascular and respiratory systems. This block covers heart function, lung mechanics, common diseases like heart failure and asthma, and their integrated management.",
         duration: "Varies",
         instructor: "Cardiologists & Pulmonologists",
-        price: 2000
+        price: 2000,
+        featured: true
     },
     {
         id:3,
@@ -130,7 +134,8 @@ export const coursesData : courses[] = [
         description: "Focus specifically on the respiratory system, including lung anatomy, gas exchange, and common respiratory diseases such as COPD, pneumonia, and tuberculosis. Learn about diagnostic tests and treatment strategies.",
         duration: "Varies",
         instructor: "Pulmonary Specialists",
-        price: 1700
+        price: 1700,
+        featured: false
     },
     {
         id:4,
@@ -140,7 +145,8 @@ export const coursesData : courses[] = [
         description: "Gain in-depth knowledge of the male and female reproductive systems, including hormonal regulation, reproductive health, common disorders, and an introduction to obstetrics and gynecology.",
         duration: "Varies",
         instructor: "Reproductive Health Experts",
-        price: 1700
+        price: 1700,
+        featured: false
     },
     {
         id:5,
@@ -150,7 +156,8 @@ export const coursesData : courses[] = [
         description: "Understand the vital role of the kidneys in fluid and electrolyte balance, waste excretion, and blood pressure regulation. This block covers renal physiology, common kidney diseases, and treatment options like dialysis.",
         duration: "Varies",
         instructor: "Nephrologists",
-        price: 1700
+        price: 1700,
+        featured: false
     },
     {
         id:6,
@@ -160,7 +167,8 @@ export const coursesData : courses[] = [
         description: "Explore the intricate endocrine system, focusing on glands, hormones, and their impact on metabolism, growth, and development. Common conditions like diabetes and thyroid disorders are covered in detail.",
         duration: "Varies",
         instructor: "Endocrinologists",
-        price: 1700
+        price: 1700,
+        featured: false
     },
     {
         id:7,
@@ -170,7 +178,8 @@ export const coursesData : courses[] = [
         description: "Investigate the fundamental mechanisms by which diseases develop, from cellular injury to genetic predispositions and environmental factors. This block provides a foundational understanding of disease processes.",
         duration: "Varies",
         instructor: "Pathologists & Researchers",
-        price: 1700
+        price: 1700,
+        featured: false
     },
     {
         id:8,
@@ -180,7 +189,8 @@ export const coursesData : courses[] = [
         description: "Dive into the complexities of the central and peripheral nervous systems. This block covers neuroanatomy, neurophysiology, common neurological disorders, and diagnostic approaches.",
         duration: "Varies",
         instructor: "Neurologists & Neurosurgeons",
-        price: 2000
+        price: 2000,
+        featured: false
     },
     {
         id:9,
@@ -190,7 +200,8 @@ export const coursesData : courses[] = [
         description: "A focused study on the anatomy and clinical conditions related to the head, neck, eyes, ears, nose, and throat. This block integrates knowledge from various specialties including ENT and ophthalmology.",
         duration: "Varies",
         instructor: "ENT Specialists & Ophthalmologists",
-        price: 1500
+        price: 1500,
+        featured: false
     }
 ];
 

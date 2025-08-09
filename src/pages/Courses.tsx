@@ -14,7 +14,7 @@ const Courses = () => {
         {coursesData.map((course) => (
           <Link to={`/courses/${course.id}`} key={course.id}>
             <div  className="bg-p4 dark:bg-[#21262B] rounded-2xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300 dark:border-dark-Cs flex flex-col">
-              <img src={course.image} alt={course.title} className="w-full h-48 object-cover" />
+              <img src={course.image} alt={course.title} loading="lazy" className="w-full h-48 object-cover" />
               <div className="p-6 flex flex-col flex-grow">
                 <div className="flex flex-wrap gap-2 mb-2">
                   {course.keyWords.map((keyword) => (
